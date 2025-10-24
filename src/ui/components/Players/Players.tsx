@@ -14,7 +14,7 @@ export const Players = () => {
       if (players.includes(player)) return;
       dispatch({ type: "add_player", payload: player });
     },
-    [dispatch, players]
+    [dispatch, players],
   );
 
   const createEditPlayer = useCallback(
@@ -24,19 +24,19 @@ export const Players = () => {
         payload: { current, new: newPlayer },
       });
     },
-    [dispatch]
+    [dispatch],
   );
 
   const createRemovePlayer = useCallback(
     (player: string) => () => {
       dispatch({ type: "remove_player", payload: player });
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (
-    <div className="w-full mx-auto">
-      <div className="bg-neutral-100 p-4 rounded-md shadow-md">
+    <div className="mx-auto w-full">
+      <div className="rounded-md bg-neutral-100 p-4 shadow-md">
         <InputWithButtons
           propagate={addPlayer}
           confirmButtonLabel="Add player"
@@ -45,9 +45,9 @@ export const Players = () => {
         />
       </div>
       <div
-        className={`min-h-[200px] mt-3 p-4 flex flex-col ${
-          players.length > 0 ? "" : "justify-center items-center"
-        } gap-2 bg-neutral-100 rounded-md shadow-md`}
+        className={`mt-3 flex min-h-[200px] flex-col p-4 ${
+          players.length > 0 ? "" : "items-center justify-center"
+        } gap-2 rounded-md bg-neutral-100 shadow-md`}
       >
         {players.length > 0 ? (
           players.map((player, index) => (

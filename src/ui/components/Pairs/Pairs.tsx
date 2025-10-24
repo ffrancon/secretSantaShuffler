@@ -26,13 +26,13 @@ export const Pairs = () => {
   }
 
   return (
-    <div className="bg-neutral-100 rounded-md shadow-md flex flex-col h-full">
-      <div className="p-4 flex flex-col gap-2 flex-grow overflow-y-auto">
+    <div className="flex h-full flex-col rounded-md bg-neutral-100 shadow-md">
+      <div className="flex flex-grow flex-col gap-2 overflow-y-auto p-4">
         {pairs.map((pair, index) => (
           <Pair key={index} pair={pair} />
         ))}
       </div>
-      <div className="flex justify-between px-4 py-3 gap-2 border-t border-neutral-300">
+      <div className="flex justify-between gap-2 border-t border-neutral-300 px-4 py-3">
         <Button onClick={generatePairs}>Generate Pairs</Button>
         <Button variant="destructive" onClick={clearPairs}>
           Clear all

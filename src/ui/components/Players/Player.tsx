@@ -24,9 +24,9 @@ export const Player = ({ player, remove, edit }: Props) => {
   };
 
   return (
-    <div className="flex justify-between items-center p-2 border border-neutral-300 shadow-sm rounded">
+    <div className="flex items-center justify-between rounded border border-neutral-300 p-2 shadow-sm">
       {mode === "view" ? (
-        <div className={`flex justify-between items-center w-full`}>
+        <div className={`flex w-full items-center justify-between`}>
           <p>{player}</p>
           <div className="flex gap-2">
             <Button onClick={createSetMode("edit")}>

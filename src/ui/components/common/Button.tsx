@@ -15,7 +15,7 @@ export const Button: React.FC<Props> = ({
 }) => {
   return (
     <button
-      className={`${variantClasses[variant]} py-1.5 px-2 text-sm rounded shadow-sm shrink-0 disabled:opacity-50 hover:cursor-pointer disabled:cursor-not-allowed ${className}`}
+      className={`${variantClasses[variant]} shrink-0 rounded px-2 py-1.5 text-sm shadow-sm hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       {...props}
     >
       {children}
