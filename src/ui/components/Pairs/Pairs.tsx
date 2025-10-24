@@ -22,19 +22,19 @@ export const Pairs = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex h-full flex-col rounded-md bg-neutral-100 shadow-md">
+    <div className="flex h-full flex-col rounded-md border border-slate-700 bg-slate-800 shadow-md">
       <div
         className={`flex flex-grow flex-col ${
           pairs.length > 0 ? "" : "items-center justify-center"
-        } gap-2 overflow-y-auto p-4`}
+        } divide-y divide-slate-700 overflow-y-auto`}
       >
         {pairs.length > 0 ? (
           pairs.map((pair, index) => <Pair key={index} pair={pair} />)
         ) : (
-          <p className="text-sm text-neutral-400">No pairs generated yet.</p>
+          <p className="text-sm text-slate-400">No pairs generated yet.</p>
         )}
       </div>
-      <div className="flex justify-between gap-2 border-t border-neutral-300 px-4 py-3">
+      <div className="flex justify-between gap-2 border-t border-slate-700 px-4 py-3">
         <Button
           onClick={generatePairs}
           disabled={pairs.length > 0 || players.length < 2}

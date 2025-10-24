@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InputWithButtons } from "../common/InputWithButtons";
 import { Button } from "../common/Button";
-import { EditIcon, Trash2Icon } from "lucide-react";
+import { CheckIcon, EditIcon, Trash2Icon, XIcon } from "lucide-react";
 
 type Props = {
   player: string;
@@ -24,7 +24,7 @@ export const Player = ({ player, remove, edit }: Props) => {
   };
 
   return (
-    <div className="flex items-center justify-between rounded border border-neutral-300 p-2">
+    <div className="flex items-center justify-between px-3 py-2">
       {mode === "view" ? (
         <div className={`flex w-full items-center justify-between`}>
           <p>{player}</p>
@@ -42,6 +42,8 @@ export const Player = ({ player, remove, edit }: Props) => {
           initialValue={player}
           propagate={onEdit}
           cancel={createSetMode("view")}
+          confirmButtonLabel={<CheckIcon size={16} />}
+          cancelButtonLabel={<XIcon size={16} />}
         />
       )}
     </div>

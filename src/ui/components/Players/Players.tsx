@@ -36,7 +36,7 @@ export const Players = () => {
 
   return (
     <div className="mx-auto w-full">
-      <div className="rounded-md bg-neutral-100 p-4 shadow-md">
+      <div className="rounded-md border border-slate-700 bg-slate-800 px-3 py-4 shadow-md">
         <InputWithButtons
           propagate={addPlayer}
           confirmButtonLabel="Add player"
@@ -45,9 +45,9 @@ export const Players = () => {
         />
       </div>
       <div
-        className={`mt-3 flex min-h-[200px] flex-col p-4 ${
+        className={`mt-3 flex min-h-[200px] flex-col ${
           players.length > 0 ? "" : "items-center justify-center"
-        } gap-2 rounded-md bg-neutral-100 shadow-md`}
+        } divide-y divide-slate-700 rounded-md border border-slate-700 bg-slate-800 shadow-md`}
       >
         {players.length > 0 ? (
           players.map((player, index) => (
@@ -59,7 +59,7 @@ export const Players = () => {
             />
           ))
         ) : (
-          <p className="text-sm text-neutral-400">No players added yet.</p>
+          <p className="text-sm text-slate-400">No players added yet.</p>
         )}
       </div>
     </div>

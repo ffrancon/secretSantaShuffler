@@ -3,11 +3,12 @@ export const Pair = ({
 }: {
   pair: [string, string];
 }) => (
-  <div className="flex items-center justify-between rounded border border-gray-300 px-2 py-3">
+  <div className="flex items-center justify-between px-2 py-3">
     <p>
       <span className="font-semibold">{giver}</span>
-      {" gives to "}
+      {" gives "}
       <span className="font-semibold">{receiver}</span>
+      {" a 🎁"}
     </p>
   </div>
 );

@@ -62,7 +62,11 @@ export const InputWithButtons = ({
       <Button onClick={onButtonClick} disabled={!isValid}>
         {confirmButtonLabel}
       </Button>
-      {cancel && <Button onClick={cancel}>{cancelButtonLabel}</Button>}
+      {cancel && (
+        <Button variant="secondary" onClick={cancel}>
+          {cancelButtonLabel}
+        </Button>
+      )}
     </div>
   );
 };
