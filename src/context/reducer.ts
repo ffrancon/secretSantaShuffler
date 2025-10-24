@@ -5,6 +5,14 @@ export type AddPlayerAction = {
   payload: string;
 };
 
+export type EditPlayerAction = {
+  type: "edit_player";
+  payload: {
+    current: string;
+    new: string;
+  };
+};
+
 export type RemovePlayerAction = {
   type: "remove_player";
   payload: string;
@@ -25,6 +33,7 @@ export type ClearPairsAction = {
 
 export type Action =
   | AddPlayerAction
+  | EditPlayerAction
   | RemovePlayerAction
   | ClearPlayersAction
   | GeneratePairsAction
@@ -37,6 +46,22 @@ export const reducer = (state: State, action: Action) => {
         players: [...state.players, action.payload],
         // Reset pairs when a new player is added
         pairs: [],
+      };
+    case "edit_player":
+      return {
+        players: state.players.map((player) =>
+          player === action.payload.current ? action.payload.new : player
+        ),
+        // Update pairs to reflect the edited player name
+        pairs: state.pairs.map(
+          ([giver, receiver]) =>
+            [
+              giver === action.payload.current ? action.payload.new : giver,
+              receiver === action.payload.current
+                ? action.payload.new
+                : receiver,
+            ] satisfies [string, string]
+        ),
       };
     case "remove_player":
       return {

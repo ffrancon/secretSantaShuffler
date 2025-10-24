@@ -16,6 +16,16 @@ export const Players = () => {
     [dispatch]
   );
 
+  const createEditPlayer = useCallback(
+    (current: string) => (newPlayer: string) => {
+      dispatch({
+        type: "edit_player",
+        payload: { current, new: newPlayer },
+      });
+    },
+    [dispatch]
+  );
+
   const createRemovePlayer = useCallback(
     (player: string) => () => {
       dispatch({ type: "remove_player", payload: player });
@@ -36,6 +46,7 @@ export const Players = () => {
             key={index}
             player={player}
             remove={createRemovePlayer(player)}
+            edit={createEditPlayer(player)}
           />
         ))}
       </ul>
