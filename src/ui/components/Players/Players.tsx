@@ -39,6 +39,7 @@ export const Players = () => {
         propagate={addPlayer}
         confirmButtonLabel="Add"
         placeholder="Enter player name"
+        clearAfterConfirm
       />
       <ul className="mt-4">
         {players.map((player, index) => (

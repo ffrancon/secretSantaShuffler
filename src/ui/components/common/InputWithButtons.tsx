@@ -6,6 +6,7 @@ type Props = {
   cancel?: () => void;
   confirmButtonLabel?: string;
   cancelButtonLabel?: string;
+  clearAfterConfirm?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const InputWithButtons = ({
@@ -14,6 +15,7 @@ export const InputWithButtons = ({
   cancel,
   confirmButtonLabel = "Confirm",
   cancelButtonLabel = "Cancel",
+  clearAfterConfirm = false,
   ...rest
 }: Props) => {
   const [value, setValue] = useState(initialValue || "");
@@ -27,6 +29,9 @@ export const InputWithButtons = ({
   const onButtonClick = () => {
     if (isValid) {
       propagate(value);
+    }
+    if (clearAfterConfirm) {
+      setValue("");
     }
   };
 
