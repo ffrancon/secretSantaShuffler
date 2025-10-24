@@ -11,9 +11,10 @@ export const Players = () => {
 
   const addPlayer = useCallback(
     (player: string) => {
+      if (players.includes(player)) return;
       dispatch({ type: "add_player", payload: player });
     },
-    [dispatch]
+    [dispatch, players]
   );
 
   const createEditPlayer = useCallback(
