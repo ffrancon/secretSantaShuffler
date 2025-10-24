@@ -1,5 +1,5 @@
+import { useCallback, useState } from "react";
 import { useSecretSantaCtx } from "@/context";
-import { useState } from "react";
 import { Player } from "./Player";
 
 export const Players = () => {
@@ -10,9 +10,12 @@ export const Players = () => {
 
   const [value, setValue] = useState("");
 
-  const createRemovePlayer = (player: string) => () => {
-    dispatch({ type: "remove_player", payload: player });
-  };
+  const createRemovePlayer = useCallback(
+    (player: string) => () => {
+      dispatch({ type: "remove_player", payload: player });
+    },
+    [dispatch]
+  );
 
   return (
     <div className="w-[400px] mx-auto">
