@@ -50,7 +50,7 @@ export const reducer = (state: State, action: Action) => {
     case "edit_player":
       return {
         players: state.players.map((player) =>
-          player === action.payload.current ? action.payload.new : player
+          player === action.payload.current ? action.payload.new : player,
         ),
         // Update pairs to reflect the edited player name
         pairs: state.pairs.map(
@@ -60,7 +60,7 @@ export const reducer = (state: State, action: Action) => {
               receiver === action.payload.current
                 ? action.payload.new
                 : receiver,
-            ] satisfies [string, string]
+            ] satisfies [string, string],
         ),
       };
     case "remove_player":

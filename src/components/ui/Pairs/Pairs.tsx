@@ -2,7 +2,7 @@ import { useSecretSantaCtx } from "@/context";
 import { generateRandomPairs } from "@/utils/generateRandomPairs";
 import { memo, useCallback } from "react";
 import { Pair } from "./Pair";
-import { Button } from "../common/Button";
+import { Button } from "@/components/ui/common/Button";
 
 export const Pairs = memo(() => {
   const {

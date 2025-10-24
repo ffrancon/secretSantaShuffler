@@ -1,7 +1,7 @@
 import { memo, useCallback } from "react";
 import { useSecretSantaCtx } from "@/context";
 import { Player } from "./Player";
-import { InputWithButtons } from "../common/InputWithButtons";
+import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
 
 export const Players = memo(() => {
   const {

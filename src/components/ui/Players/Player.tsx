@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
-import { InputWithButtons } from "../common/InputWithButtons";
-import { Button } from "../common/Button";
+import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
+import { Button } from "@/components/ui/common/Button";
 import { CheckIcon, EditIcon, Trash2Icon, XIcon } from "lucide-react";
 
 type Props = {
