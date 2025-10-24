@@ -2,6 +2,7 @@ import { useSecretSantaCtx } from "@/context";
 import { generateRandomPairs } from "@/utils/generateRandomPairs";
 import { useCallback } from "react";
 import { Pair } from "./Pair";
+import { Button } from "../common/Button";
 
 export const Pairs = () => {
   const {
@@ -27,18 +28,10 @@ export const Pairs = () => {
   return (
     <div className="w-[400px] mx-auto">
       <div className="flex gap-2 mb-4">
-        <button
-          onClick={generatePairs}
-          className="h-10 bg-green-500 text-white px-4 py-1 rounded shrink-0"
-        >
-          Generate Pairs
-        </button>
-        <button
-          onClick={clearPairs}
-          className="h-10 bg-red-500 text-white px-4 py-1 rounded shrink-0"
-        >
+        <Button onClick={generatePairs}>Generate Pairs</Button>
+        <Button variant="destructive" onClick={clearPairs}>
           Clear Pairs
-        </button>
+        </Button>
       </div>
       <ul>
         {pairs.map((pair, index) => (

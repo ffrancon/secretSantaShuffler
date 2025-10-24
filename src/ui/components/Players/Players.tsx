@@ -42,16 +42,18 @@ export const Players = () => {
         placeholder="Enter player name"
         clearAfterConfirm
       />
-      <ul className="mt-4">
-        {players.map((player, index) => (
-          <Player
-            key={index}
-            player={player}
-            remove={createRemovePlayer(player)}
-            edit={createEditPlayer(player)}
-          />
-        ))}
-      </ul>
+      {players.length > 0 && (
+        <ul className="mt-4 divide-y divide-slate-500">
+          {players.map((player, index) => (
+            <Player
+              key={index}
+              player={player}
+              remove={createRemovePlayer(player)}
+              edit={createEditPlayer(player)}
+            />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

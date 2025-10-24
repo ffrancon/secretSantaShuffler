@@ -1,4 +1,6 @@
 import { useState, type ChangeEvent, type InputHTMLAttributes } from "react";
+import { Button } from "./Button";
+import { Input } from "./Input";
 
 type Props = {
   initialValue?: string;
@@ -36,32 +38,18 @@ export const InputWithButtons = ({
   };
 
   return (
-    <div className="flex gap-2">
-      <input
+    <div className="flex items-center gap-2">
+      <Input
         maxLength={64}
         {...rest}
         type="text"
         value={value}
         onChange={onInputChange}
-        className="w-full h-10 border border-gray-300 rounded px-2 py-1"
       />
-      <button
-        type="button"
-        onClick={onButtonClick}
-        className="h-10 bg-blue-500 text-white px-4 py-1 rounded shrink-0"
-        disabled={!isValid}
-      >
+      <Button onClick={onButtonClick} disabled={!isValid}>
         {confirmButtonLabel}
-      </button>
-      {cancel && (
-        <button
-          type="button"
-          onClick={cancel}
-          className="h-10 bg-gray-300 text-black px-4 py-1 rounded shrink-0"
-        >
-          {cancelButtonLabel}
-        </button>
-      )}
+      </Button>
+      {cancel && <Button onClick={cancel}>{cancelButtonLabel}</Button>}
     </div>
   );
 };
