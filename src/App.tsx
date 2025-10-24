@@ -1,5 +1,5 @@
 function App() {
-  return <div>TODO</div>;
+  return <div className="min-h-screen p-4 bg-gray-100">TODO</div>;
 }
 
 export default App;
