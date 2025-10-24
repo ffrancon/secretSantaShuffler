@@ -1,6 +1,6 @@
 import { SecretSantaContextProvider } from "./context/provider";
-import { Pairs } from "./ui/components/Pairs";
-import { Players } from "./ui/components/Players";
+import { Pairs } from "./ui/components/Pairs/Pairs";
+import { Players } from "./ui/components/Players/Players";
 
 function App() {
   return (

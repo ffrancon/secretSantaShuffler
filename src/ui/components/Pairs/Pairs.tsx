@@ -20,7 +20,7 @@ export const Pairs = () => {
     dispatch({ type: "clear_pairs" });
   }, [dispatch]);
 
-  if (pairs.length === 0) {
+  if (players.length === 0) {
     return null;
   }
 
