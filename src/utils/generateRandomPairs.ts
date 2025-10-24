@@ -31,7 +31,7 @@ export const generateRandomPairs = <T>(items: T[]): Array<[T, T]> => {
   const end = randomized.length - 1;
 
   return randomized.map((item, index) => {
-    const nextItem = index === end ? randomized[0] : randomized[index + 1];
-    return [item, nextItem] satisfies [T, T];
+    const next = index === end ? randomized[0] : randomized[index + 1];
+    return [item, next] satisfies [T, T];
   });
 };
