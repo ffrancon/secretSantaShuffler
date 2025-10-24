@@ -1,25 +1,25 @@
 import { type Pairs, type State } from "./types";
 
-type AddPlayerAction = {
+export type AddPlayerAction = {
   type: "add_player";
   payload: string;
 };
 
-type RemovePlayerAction = {
+export type RemovePlayerAction = {
   type: "remove_player";
   payload: string;
 };
 
-type ClearPlayersAction = {
+export type ClearPlayersAction = {
   type: "clear_players";
 };
 
-type GeneratePairsAction = {
+export type GeneratePairsAction = {
   type: "generate_pairs";
   payload: Pairs;
 };
 
-type ClearPairsAction = {
+export type ClearPairsAction = {
   type: "clear_pairs";
 };
 

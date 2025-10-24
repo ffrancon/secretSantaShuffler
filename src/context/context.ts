@@ -16,12 +16,12 @@ export const SecretSantaContext = createContext<SecretSantaContextType>({
   dispatch: () => {},
 });
 
-export const useGetState = () => {
+export const useSecretSantaCtx = () => {
   const context = useContext(SecretSantaContext);
-  return context.state;
-};
-
-export const useGetDispatch = () => {
-  const context = useContext(SecretSantaContext);
-  return context.dispatch;
+  if (!context) {
+    throw new Error(
+      "useSecretSantaCtx must be used within SecretSantaContextProvider"
+    );
+  }
+  return context;
 };
