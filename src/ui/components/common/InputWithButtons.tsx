@@ -1,28 +1,24 @@
-import {
-  useMemo,
-  useState,
-  type ChangeEvent,
-  type InputHTMLAttributes,
-} from "react";
+import { useState, type ChangeEvent, type InputHTMLAttributes } from "react";
 
 type Props = {
   initialValue?: string;
   propagate: (value: string) => void;
-  buttonLabel?: string;
+  cancel?: () => void;
+  confirmButtonLabel?: string;
+  cancelButtonLabel?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const SingleInputWithButton = ({
+export const InputWithButtons = ({
   initialValue,
   propagate,
-  buttonLabel = "Confirm",
+  cancel,
+  confirmButtonLabel = "Confirm",
+  cancelButtonLabel = "Cancel",
   ...rest
 }: Props) => {
   const [value, setValue] = useState(initialValue || "");
 
-  const isValid = useMemo(() => {
-    if (!value) return false;
-    return value.trim().length > 0;
-  }, [value]);
+  const isValid = value.trim().length > 0;
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -30,18 +26,18 @@ export const SingleInputWithButton = ({
 
   const onButtonClick = () => {
     if (isValid) {
-      propagate(value.trim());
+      propagate(value);
     }
   };
 
   return (
     <div className="flex gap-2">
       <input
+        maxLength={64}
         {...rest}
         type="text"
         value={value}
         onChange={onInputChange}
-        maxLength={64}
         className="w-full h-10 border border-gray-300 rounded px-2 py-1"
       />
       <button
@@ -50,8 +46,17 @@ export const SingleInputWithButton = ({
         className="h-10 bg-blue-500 text-white px-4 py-1 rounded shrink-0"
         disabled={!isValid}
       >
-        {buttonLabel}
+        {confirmButtonLabel}
       </button>
+      {cancel && (
+        <button
+          type="button"
+          onClick={cancel}
+          className="h-10 bg-gray-300 text-black px-4 py-1 rounded shrink-0"
+        >
+          {cancelButtonLabel}
+        </button>
+      )}
     </div>
   );
 };

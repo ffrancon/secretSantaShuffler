@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useSecretSantaCtx } from "@/context";
 import { Player } from "./Player";
-import { SingleInputWithButton } from "../common/SingleInputWithButton";
+import { InputWithButtons } from "../common/InputWithButtons";
 
 export const Players = () => {
   const {
@@ -35,9 +35,9 @@ export const Players = () => {
 
   return (
     <div className="w-[400px] mx-auto">
-      <SingleInputWithButton
+      <InputWithButtons
         propagate={addPlayer}
-        buttonLabel="Add"
+        confirmButtonLabel="Add"
         placeholder="Enter player name"
       />
       <ul className="mt-4">

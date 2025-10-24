@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { SingleInputWithButton } from "../common/SingleInputWithButton";
+import { InputWithButtons } from "../common/InputWithButtons";
 
-export const Player = ({
-  player,
-  remove,
-  edit,
-}: {
+type Props = {
   player: string;
   remove: () => void;
   edit: (player: string) => void;
-}) => {
+};
+
+export const Player = ({ player, remove, edit }: Props) => {
   const [mode, setMode] = useState<"view" | "edit">("view");
 
   const createSetMode = (mode: "view" | "edit") => () => {
@@ -17,7 +15,9 @@ export const Player = ({
   };
 
   const onEdit = (newPlayer: string) => {
-    edit(newPlayer);
+    if (newPlayer !== player) {
+      edit(newPlayer);
+    }
     setMode("view");
   };
 
@@ -28,14 +28,12 @@ export const Player = ({
           <p>{player}</p>
           <div className="flex gap-2">
             <button
-              role="button"
               onClick={createSetMode("edit")}
               className="bg-blue-500 text-white px-2 py-1 rounded"
             >
               Edit
             </button>
             <button
-              role="button"
               onClick={remove}
               className="bg-red-500 text-white px-2 py-1 rounded"
             >
@@ -44,16 +42,11 @@ export const Player = ({
           </div>
         </div>
       ) : (
-        <div className="flex gap-2">
-          <SingleInputWithButton initialValue={player} propagate={onEdit} />
-          <button
-            role="button"
-            onClick={createSetMode("view")}
-            className="bg-gray-500 text-white px-2 py-1 rounded"
-          >
-            Cancel
-          </button>
-        </div>
+        <InputWithButtons
+          initialValue={player}
+          propagate={onEdit}
+          cancel={createSetMode("view")}
+        />
       )}
     </div>
   );
