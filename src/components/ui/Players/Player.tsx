@@ -44,6 +44,7 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
           cancel={createSetMode("view")}
           confirmButtonLabel={<CheckIcon size={16} />}
           cancelButtonLabel={<XIcon size={16} />}
+          autoFocus
         />
       )}
     </div>

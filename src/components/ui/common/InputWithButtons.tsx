@@ -16,6 +16,7 @@ type Props = {
   confirmButtonLabel?: ReactNode;
   cancelButtonLabel?: ReactNode;
   clearAfterConfirm?: boolean;
+  autoFocus?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const InputWithButtons = memo(
@@ -26,6 +27,7 @@ export const InputWithButtons = memo(
     confirmButtonLabel = "Confirm",
     cancelButtonLabel = "Cancel",
     clearAfterConfirm = false,
+    autoFocus = false,
     ...rest
   }: Props) => {
     const [value, setValue] = useState(initialValue || "");
@@ -39,9 +41,9 @@ export const InputWithButtons = memo(
     const onButtonClick = () => {
       if (isValid) {
         propagate(value);
-      }
-      if (clearAfterConfirm) {
-        setValue("");
+        if (clearAfterConfirm) {
+          setValue("");
+        }
       }
     };
 
@@ -49,14 +51,18 @@ export const InputWithButtons = memo(
       if (e.key === "Enter") {
         onButtonClick();
       }
+      if (e.key === "Escape" && cancel) {
+        cancel();
+      }
     };
 
     return (
       <div className="flex w-full items-center gap-2">
         <Input
-          maxLength={64}
-          {...rest}
           type="text"
+          {...rest}
+          autoFocus={autoFocus}
+          maxLength={64}
           value={value}
           onChange={onInputChange}
           onKeyDown={onKeyDown}
