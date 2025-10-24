@@ -39,7 +39,7 @@ export const Pairs = memo(() => {
           <p className="text-sm text-slate-400">No pairs generated yet.</p>
         )}
       </div>
-      <div className="flex justify-between gap-2 border-t border-slate-700 px-4 py-3">
+      <div className="flex justify-between gap-2 border-t border-slate-700 p-3">
         <Button onClick={generatePairs} disabled={players.length < 2}>
           Generate Pairs
         </Button>
