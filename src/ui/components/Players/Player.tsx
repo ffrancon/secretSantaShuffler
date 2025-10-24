@@ -24,7 +24,7 @@ export const Player = ({ player, remove, edit }: Props) => {
   };
 
   return (
-    <div className="flex items-center justify-between rounded border border-neutral-300 p-2 shadow-sm">
+    <div className="flex items-center justify-between rounded border border-neutral-300 p-2">
       {mode === "view" ? (
         <div className={`flex w-full items-center justify-between`}>
           <p>{player}</p>
