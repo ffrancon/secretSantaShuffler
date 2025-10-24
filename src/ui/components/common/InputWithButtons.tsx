@@ -1,4 +1,9 @@
-import { useState, type ChangeEvent, type InputHTMLAttributes } from "react";
+import {
+  useState,
+  type ChangeEvent,
+  type InputHTMLAttributes,
+  type ReactNode,
+} from "react";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -6,8 +11,8 @@ type Props = {
   initialValue?: string;
   propagate: (value: string) => void;
   cancel?: () => void;
-  confirmButtonLabel?: string;
-  cancelButtonLabel?: string;
+  confirmButtonLabel?: ReactNode;
+  cancelButtonLabel?: ReactNode;
   clearAfterConfirm?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 

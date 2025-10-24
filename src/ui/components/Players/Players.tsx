@@ -35,25 +35,33 @@ export const Players = () => {
   );
 
   return (
-    <div className="w-[400px] mx-auto">
-      <InputWithButtons
-        propagate={addPlayer}
-        confirmButtonLabel="Add"
-        placeholder="Enter player name"
-        clearAfterConfirm
-      />
-      {players.length > 0 && (
-        <ul className="mt-4 divide-y divide-slate-500">
-          {players.map((player, index) => (
+    <div className="w-full mx-auto">
+      <div className="bg-neutral-100 p-4 rounded-md shadow-md">
+        <InputWithButtons
+          propagate={addPlayer}
+          confirmButtonLabel="Add player"
+          placeholder="Enter player name"
+          clearAfterConfirm
+        />
+      </div>
+      <div
+        className={`min-h-[200px] mt-3 p-4 flex flex-col ${
+          players.length > 0 ? "" : "justify-center items-center"
+        } gap-2 bg-neutral-100 rounded-md shadow-md`}
+      >
+        {players.length > 0 ? (
+          players.map((player, index) => (
             <Player
               key={index}
               player={player}
               remove={createRemovePlayer(player)}
               edit={createEditPlayer(player)}
             />
-          ))}
-        </ul>
-      )}
+          ))
+        ) : (
+          <p className="text-sm text-neutral-400">No players added yet.</p>
+        )}
+      </div>
     </div>
   );
 };

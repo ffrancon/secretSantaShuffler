@@ -3,9 +3,11 @@ export const Pair = ({
 }: {
   pair: [string, string];
 }) => (
-  <div className="h-[50px] flex justify-between items-center my-2 p-2 border border-gray-300 rounded">
+  <div className="flex justify-between items-center px-2 py-3 border border-gray-300 rounded">
     <p>
-      <strong>{giver}</strong> ➡️ <strong>{receiver}</strong>
+      <span className="font-semibold">{giver}</span>
+      {" gives to "}
+      <span className="font-semibold">{receiver}</span>
     </p>
   </div>
 );

@@ -24,16 +24,16 @@ export const Player = ({ player, remove, edit }: Props) => {
   };
 
   return (
-    <div className="flex justify-between items-center my-2 p-2 border border-slate-500 rounded">
+    <div className="flex justify-between items-center p-2 border border-neutral-300 shadow-sm rounded">
       {mode === "view" ? (
-        <div className="flex justify-between items-center w-full">
+        <div className={`flex justify-between items-center w-full`}>
           <p>{player}</p>
           <div className="flex gap-2">
             <Button onClick={createSetMode("edit")}>
-              <EditIcon size={17} />
+              <EditIcon size={16} />
             </Button>
             <Button variant="destructive" onClick={remove}>
-              <Trash2Icon size={17} />
+              <Trash2Icon size={16} />
             </Button>
           </div>
         </div>
