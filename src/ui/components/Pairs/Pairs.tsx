@@ -1,10 +1,10 @@
 import { useSecretSantaCtx } from "@/context";
 import { generateRandomPairs } from "@/utils/generateRandomPairs";
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 import { Pair } from "./Pair";
 import { Button } from "../common/Button";
 
-export const Pairs = () => {
+export const Pairs = memo(() => {
   const {
     state: { players, pairs },
     dispatch,
@@ -29,16 +29,18 @@ export const Pairs = () => {
         } divide-y divide-slate-700 overflow-y-auto`}
       >
         {pairs.length > 0 ? (
-          pairs.map((pair, index) => <Pair key={index} pair={pair} />)
+          pairs.map((pair) => (
+            <Pair
+              key={`pair-${pair[0].replace(/\s+/g, "-")}-${pair[1].replace(/\s+/g, "-")}`}
+              pair={pair}
+            />
+          ))
         ) : (
           <p className="text-sm text-slate-400">No pairs generated yet.</p>
         )}
       </div>
       <div className="flex justify-between gap-2 border-t border-slate-700 px-4 py-3">
-        <Button
-          onClick={generatePairs}
-          disabled={pairs.length > 0 || players.length < 2}
-        >
+        <Button onClick={generatePairs} disabled={players.length < 2}>
           Generate Pairs
         </Button>
         <Button
@@ -51,4 +53,4 @@ export const Pairs = () => {
       </div>
     </div>
   );
-};
+});

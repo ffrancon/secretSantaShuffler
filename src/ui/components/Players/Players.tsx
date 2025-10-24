@@ -1,9 +1,9 @@
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 import { useSecretSantaCtx } from "@/context";
 import { Player } from "./Player";
 import { InputWithButtons } from "../common/InputWithButtons";
 
-export const Players = () => {
+export const Players = memo(() => {
   const {
     state: { players },
     dispatch,
@@ -11,7 +11,17 @@ export const Players = () => {
 
   const addPlayer = useCallback(
     (player: string) => {
-      if (players.includes(player)) return;
+      if (
+        // Prevent adding duplicate players (case-insensitive, ignoring spaces)
+        players.some(
+          (p) =>
+            p.toLowerCase().replace(/\s+/g, "-") ===
+            player.toLowerCase().replace(/\s+/g, "-"),
+        )
+      ) {
+        // ToDo: Add user feedback here
+        return;
+      }
       dispatch({ type: "add_player", payload: player });
     },
     [dispatch, players],
@@ -50,9 +60,9 @@ export const Players = () => {
         } divide-y divide-slate-700 rounded-md border border-slate-700 bg-slate-800 shadow-md`}
       >
         {players.length > 0 ? (
-          players.map((player, index) => (
+          players.map((player) => (
             <Player
-              key={index}
+              key={`player-${player.replace(/\s+/g, "-")}`}
               player={player}
               remove={createRemovePlayer(player)}
               edit={createEditPlayer(player)}
@@ -64,4 +74,4 @@ export const Players = () => {
       </div>
     </div>
   );
-};
+});

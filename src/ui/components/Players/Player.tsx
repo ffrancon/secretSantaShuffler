@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { InputWithButtons } from "../common/InputWithButtons";
 import { Button } from "../common/Button";
 import { CheckIcon, EditIcon, Trash2Icon, XIcon } from "lucide-react";
@@ -9,7 +9,7 @@ type Props = {
   edit: (player: string) => void;
 };
 
-export const Player = ({ player, remove, edit }: Props) => {
+export const Player = memo<Props>(({ player, remove, edit }) => {
   const [mode, setMode] = useState<"view" | "edit">("view");
 
   const createSetMode = (mode: "view" | "edit") => () => {
@@ -48,4 +48,4 @@ export const Player = ({ player, remove, edit }: Props) => {
       )}
     </div>
   );
-};
+});
