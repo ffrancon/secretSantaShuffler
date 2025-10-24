@@ -42,14 +42,22 @@ export const InputWithButtons = ({
     }
   };
 
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onButtonClick();
+    }
+  };
+
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex w-full items-center gap-2">
       <Input
         maxLength={64}
         {...rest}
         type="text"
         value={value}
         onChange={onInputChange}
+        onKeyDown={onKeyDown}
+        className="flex-grow"
       />
       <Button onClick={onButtonClick} disabled={!isValid}>
         {confirmButtonLabel}
