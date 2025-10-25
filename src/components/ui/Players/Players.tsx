@@ -52,6 +52,7 @@ export const Players = memo(() => {
           confirmButtonLabel="Add player"
           placeholder="Enter player name"
           clearAfterConfirm
+          aria-label="Add player input"
         />
       </div>
       <div

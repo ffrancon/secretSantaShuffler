@@ -68,11 +68,15 @@ export const InputWithButtons = memo(
           onKeyDown={onKeyDown}
           className="flex-grow"
         />
-        <Button onClick={onButtonClick} disabled={!isValid}>
+        <Button
+          onClick={onButtonClick}
+          disabled={!isValid}
+          aria-label="Confirm"
+        >
           {confirmButtonLabel}
         </Button>
         {cancel && (
-          <Button variant="secondary" onClick={cancel}>
+          <Button variant="secondary" onClick={cancel} aria-label="Cancel">
             {cancelButtonLabel}
           </Button>
         )}

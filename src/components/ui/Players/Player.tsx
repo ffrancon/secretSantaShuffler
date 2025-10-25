@@ -45,6 +45,7 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
           confirmButtonLabel={<CheckIcon size={16} />}
           cancelButtonLabel={<XIcon size={16} />}
           autoFocus
+          aria-label="Edit player input"
         />
       )}
     </div>
