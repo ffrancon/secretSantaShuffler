@@ -2,6 +2,7 @@ import { memo, useCallback } from "react";
 import { useSecretSantaCtx } from "@/context";
 import { Player } from "./Player";
 import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
+import { Button } from "../common/Button";
 
 export const Players = memo(() => {
   const {
@@ -44,9 +45,13 @@ export const Players = memo(() => {
     [dispatch],
   );
 
+  const clearPlayers = useCallback(() => {
+    dispatch({ type: "clear_players" });
+  }, [dispatch]);
+
   return (
     <div className="mx-auto w-full">
-      <div className="rounded-md border border-slate-700 bg-slate-800 px-3 py-4 shadow-md">
+      <div className="flex gap-2 rounded-md border border-slate-700 bg-slate-800 px-3 py-4 shadow-md">
         <InputWithButtons
           propagate={addPlayer}
           confirmButtonLabel="Add player"
@@ -54,6 +59,13 @@ export const Players = memo(() => {
           clearAfterConfirm
           aria-label="Add player input"
         />
+        <Button
+          variant="destructive"
+          onClick={clearPlayers}
+          disabled={players.length === 0}
+        >
+          Clear all
+        </Button>
       </div>
       <div
         className={`mt-3 flex min-h-[200px] flex-col ${
