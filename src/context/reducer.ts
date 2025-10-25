@@ -1,7 +1,8 @@
+import { saveStateToCache } from "@/app/cache";
 import { type Action } from "@/types/reducer";
 import { type State } from "@/types/state";
 
-export const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "add_player":
       return {
@@ -49,4 +50,16 @@ export const reducer = (state: State, action: Action) => {
     default:
       return state;
   }
+};
+
+export const cachedReducer = (state: State, action: Action) => {
+  const updated = reducer(state, action);
+  // Persist the updated state to cache
+  try {
+    // Not the best way performance-wise, but sufficient for this use case
+    saveStateToCache(updated);
+  } catch (error) {
+    console.error("Error saving cache:", error);
+  }
+  return updated;
 };
