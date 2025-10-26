@@ -1,9 +1,10 @@
-import { Fragment, memo, useCallback, useState } from "react";
+import { Fragment, memo, useCallback } from "react";
 import { useSecretSantaCtx } from "@/app/context";
 import { Player } from "./Player";
 import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
 import { Button } from "../common/Button";
 import { ConfirmDialog } from "../common/ConfirmDialog";
+import { useDialogState } from "@/components/hooks/useDialogState";
 
 export const Players = memo(() => {
   const {
@@ -50,24 +51,16 @@ export const Players = memo(() => {
     dispatch({ type: "clear_players" });
   }, [dispatch]);
 
-  const [isClearConfirmDialogOpen, setClearConfirmDialogOpen] = useState(false);
-  const openClearDialog = useCallback(
-    () => setClearConfirmDialogOpen(true),
-    [],
-  );
-  const closeClearDialog = useCallback(
-    () => setClearConfirmDialogOpen(false),
-    [],
-  );
+  const { isOpen, openDialog, closeDialog } = useDialogState();
 
   return (
     <Fragment>
       <ConfirmDialog
-        isOpen={isClearConfirmDialogOpen}
+        isOpen={isOpen}
         title="Clear all players"
         content="Are you sure you want to remove all players? Pairs will also be cleared."
         confirm={clearPlayers}
-        close={closeClearDialog}
+        close={closeDialog}
         isDestructive
       />
       <div className="mx-auto w-full">
@@ -81,7 +74,7 @@ export const Players = memo(() => {
           />
           <Button
             variant="destructive"
-            onClick={pairs.length > 0 ? openClearDialog : clearPlayers}
+            onClick={pairs.length > 0 ? openDialog : clearPlayers}
             disabled={players.length === 0}
           >
             Clear all

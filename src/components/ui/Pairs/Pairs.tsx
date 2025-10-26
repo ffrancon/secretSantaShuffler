@@ -1,9 +1,10 @@
 import { useSecretSantaCtx } from "@/app/context";
 import { generateRandomPairs } from "@/utils/generateRandomPairs";
-import { Fragment, memo, useCallback, useState } from "react";
+import { Fragment, memo, useCallback } from "react";
 import { Pair } from "./Pair";
 import { Button } from "@/components/ui/common/Button";
 import { ConfirmDialog } from "../common/ConfirmDialog";
+import { useDialogState } from "@/components/hooks/useDialogState";
 
 export const Pairs = memo(() => {
   const {
@@ -22,24 +23,16 @@ export const Pairs = memo(() => {
     dispatch({ type: "clear_pairs" });
   }, [dispatch]);
 
-  const [isClearConfirmDialogOpen, setClearConfirmDialogOpen] = useState(false);
-  const openClearDialog = useCallback(
-    () => setClearConfirmDialogOpen(true),
-    [],
-  );
-  const closeClearDialog = useCallback(
-    () => setClearConfirmDialogOpen(false),
-    [],
-  );
+  const { isOpen, openDialog, closeDialog } = useDialogState();
 
   return (
     <Fragment>
       <ConfirmDialog
-        isOpen={isClearConfirmDialogOpen}
+        isOpen={isOpen}
         title="Clear all pairs"
         content="Are you sure you want to clear all pairs?"
         confirm={clearPairs}
-        close={closeClearDialog}
+        close={closeDialog}
         isDestructive
       />
       <div className="flex h-full flex-col rounded-md border border-slate-700 bg-slate-800 shadow-md">
@@ -65,7 +58,7 @@ export const Pairs = memo(() => {
           </Button>
           <Button
             variant="destructive"
-            onClick={openClearDialog}
+            onClick={openDialog}
             disabled={pairs.length === 0}
           >
             Clear all
