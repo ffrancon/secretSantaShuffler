@@ -1,11 +1,10 @@
 import { useSecretSantaCtx } from "@/app/context";
 import { generateRandomPairs } from "@/utils/generateRandomPairs";
-import { Fragment, memo, useCallback, useState } from "react";
+import { Fragment, memo, useCallback } from "react";
 import { Pair } from "./Pair";
 import { Button } from "@/components/ui/common/Button";
 import { ConfirmDialog } from "../common/ConfirmDialog";
 import { useDialogState } from "@/components/hooks/useDialogState";
-import { formatPairsToReadableString } from "@/utils/formatPairsToReadableString";
 
 export const Pairs = memo(() => {
   const {
@@ -24,30 +23,7 @@ export const Pairs = memo(() => {
     dispatch({ type: "clear_pairs" });
   }, [dispatch]);
 
-  const copyPairsToClipboard = useCallback(async () => {
-    const formatted = formatPairsToReadableString(pairs);
-    try {
-      await navigator.clipboard.writeText(formatted);
-      return true;
-    } catch (error) {
-      console.error("Failed to copy pairs to clipboard:", error);
-      return false;
-    }
-  }, [pairs]);
-
   const { isOpen, openDialog, closeDialog } = useDialogState();
-
-  const [isCopied, setIsCopied] = useState(false);
-  const handleCopy = async () => {
-    if (isCopied) return;
-
-    const success = await copyPairsToClipboard();
-
-    if (success) {
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 1500);
-    }
-  };
 
   return (
     <Fragment>
@@ -77,20 +53,9 @@ export const Pairs = memo(() => {
           )}
         </div>
         <div className="flex justify-between gap-2 border-t border-slate-700 p-3">
-          <div className="flex items-center gap-2">
-            <Button onClick={generatePairs} disabled={players.length < 2}>
-              Generate pairs
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={handleCopy}
-              disabled={pairs.length === 0}
-            >
-              Copy to clipboard
-            </Button>
-            {/* Will replace this with a toast later (accessibility concerns) */}
-            {isCopied && <p>👍</p>}
-          </div>
+          <Button onClick={generatePairs} disabled={players.length < 2}>
+            Generate pairs
+          </Button>
           <Button
             variant="destructive"
             onClick={openDialog}

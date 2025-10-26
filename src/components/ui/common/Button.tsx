@@ -1,6 +1,6 @@
 import { memo, type ButtonHTMLAttributes } from "react";
 
-type Props = {
+export type ButtonProps = {
   variant?: "primary" | "secondary" | "destructive";
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -10,7 +10,7 @@ const variantClasses = {
   destructive: "bg-rose-700 hover:bg-rose-800 text-white hover:text-slate-200",
 };
 
-export const Button = memo<Props>(
+export const Button = memo<ButtonProps>(
   ({ children, className, variant = "primary", ...props }) => {
     return (
       <button
