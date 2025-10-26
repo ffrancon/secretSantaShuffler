@@ -1,4 +1,4 @@
-import { useSecretSantaCtx } from "@/context";
+import { useSecretSantaCtx } from "@/app/context";
 import { generateRandomPairs } from "@/utils/generateRandomPairs";
 import { memo, useCallback } from "react";
 import { Pair } from "./Pair";

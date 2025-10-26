@@ -1,6 +1,6 @@
 import { type ReactNode, useMemo, useReducer } from "react";
-import { cachedReducer } from "@/context";
-import { SecretSantaContext } from "@/context";
+import { cachedReducer } from "@/app/reducer";
+import { SecretSantaContext } from "@/app/context";
 import { restoreStateFromCache } from "@/app/cache";
 
 export const Provider = ({ children }: { children: ReactNode }) => {

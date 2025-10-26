@@ -3,7 +3,7 @@ import { Header } from "@/components/ui/Header/Header";
 import { Pairs } from "@/components/ui/Pairs/Pairs";
 import { Players } from "@/components/ui/Players/Players";
 
-function App() {
+export const App = () => {
   return (
     <Provider>
       <div className="min-h-screen bg-gradient-to-r from-slate-900 to-slate-800 p-4 text-sm text-slate-200">
@@ -15,6 +15,4 @@ function App() {
       </div>
     </Provider>
   );
-}
-
-export default App;
+};

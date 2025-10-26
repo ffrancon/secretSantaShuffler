@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react";
-import { useSecretSantaCtx } from "@/context";
+import { useSecretSantaCtx } from "@/app/context";
 import { Player } from "./Player";
 import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
 import { Button } from "../common/Button";
