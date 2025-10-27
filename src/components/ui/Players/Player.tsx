@@ -24,15 +24,19 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
   };
 
   return (
-    <div className="flex items-center justify-between px-3 py-2">
+    <li className="flex items-center justify-between px-3 py-2">
       {mode === "view" ? (
         <div className={`flex w-full items-center justify-between`}>
           <p>{player}</p>
           <div className="flex gap-2">
-            <Button onClick={createSetMode("edit")}>
+            <Button onClick={createSetMode("edit")} aria-label="Edit player">
               <EditIcon size={16} />
             </Button>
-            <Button variant="destructive" onClick={remove}>
+            <Button
+              variant="destructive"
+              onClick={remove}
+              aria-label="Remove player"
+            >
               <Trash2Icon size={16} />
             </Button>
           </div>
@@ -43,11 +47,13 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
           propagate={onEdit}
           cancel={createSetMode("view")}
           confirmButtonLabel={<CheckIcon size={16} />}
+          confirmButtonAriaLabel="Confirm edit"
           cancelButtonLabel={<XIcon size={16} />}
+          cancelButtonAriaLabel="Cancel edit"
           autoFocus
           aria-label="Edit player input"
         />
       )}
-    </div>
+    </li>
   );
 });

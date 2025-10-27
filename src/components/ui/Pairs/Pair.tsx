@@ -10,7 +10,7 @@ export const Pair = memo<Props>(({ pair }) => {
   const toCopy = useMemo(() => formatPairToReadableString(pair), [pair]);
 
   return (
-    <div className="flex items-center justify-between p-2">
+    <li className="flex items-center justify-between p-2">
       <p>
         <span className="font-semibold">{pair[0]}</span>
         {" gives "}
@@ -18,6 +18,6 @@ export const Pair = memo<Props>(({ pair }) => {
         {" a 🎁"}
       </p>
       <CopyToClipboardButton content={toCopy} variant="secondary" />
-    </div>
+    </li>
   );
 });

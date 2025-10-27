@@ -36,7 +36,7 @@ export const Pairs = memo(() => {
         isDestructive
       />
       <div className="flex h-full flex-col rounded-md border border-slate-700 bg-slate-800 shadow-md">
-        <div
+        <ul
           className={`flex flex-grow flex-col ${
             pairs.length > 0 ? "" : "items-center justify-center"
           } divide-y divide-slate-700 overflow-y-auto`}
@@ -51,7 +51,7 @@ export const Pairs = memo(() => {
           ) : (
             <p className="text-sm text-slate-400">No pairs generated yet.</p>
           )}
-        </div>
+        </ul>
         <div className="flex justify-between gap-2 border-t border-slate-700 p-3">
           <Button onClick={generatePairs} disabled={players.length < 2}>
             Generate pairs

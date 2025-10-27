@@ -14,7 +14,9 @@ type Props = {
   propagate: (value: string) => void;
   cancel?: () => void;
   confirmButtonLabel?: ReactNode;
+  confirmButtonAriaLabel?: string;
   cancelButtonLabel?: ReactNode;
+  cancelButtonAriaLabel?: string;
   clearAfterConfirm?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
@@ -24,7 +26,9 @@ export const InputWithButtons = memo(
     propagate,
     cancel,
     confirmButtonLabel = "Confirm",
+    confirmButtonAriaLabel = "Confirm",
     cancelButtonLabel = "Cancel",
+    cancelButtonAriaLabel = "Cancel",
     clearAfterConfirm = false,
     ...rest
   }: Props) => {
@@ -67,12 +71,16 @@ export const InputWithButtons = memo(
         <Button
           onClick={onButtonClick}
           disabled={!isValueValid}
-          aria-label="Confirm"
+          aria-label={confirmButtonAriaLabel}
         >
           {confirmButtonLabel}
         </Button>
         {cancel && (
-          <Button variant="secondary" onClick={cancel} aria-label="Cancel">
+          <Button
+            variant="secondary"
+            onClick={cancel}
+            aria-label={cancelButtonAriaLabel}
+          >
             {cancelButtonLabel}
           </Button>
         )}

@@ -80,7 +80,7 @@ export const Players = memo(() => {
             Clear all
           </Button>
         </div>
-        <div
+        <ul
           className={`mt-3 flex min-h-[200px] flex-col ${
             players.length > 0 ? "" : "items-center justify-center"
           } divide-y divide-slate-700 rounded-md border border-slate-700 bg-slate-800 shadow-md`}
@@ -97,7 +97,7 @@ export const Players = memo(() => {
           ) : (
             <p className="text-sm text-slate-400">No players added yet.</p>
           )}
-        </div>
+        </ul>
       </div>
     </Fragment>
   );
