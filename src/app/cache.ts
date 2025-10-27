@@ -1,6 +1,6 @@
 import { initialState } from "@/app/context";
 import type { State } from "@/types/state";
-import { isStateValid } from "@/utils/validators";
+import { isState } from "@/utils/validators";
 
 const CACHE_KEY = "secretSantaShufflerCache";
 
@@ -22,7 +22,7 @@ export const restoreStateFromCache = (): State => {
       return initialState;
     }
     const parsed = JSON.parse(data) as unknown;
-    return isStateValid(parsed) ? parsed : initialState;
+    return isState(parsed) ? parsed : initialState;
   } catch (error) {
     console.error("Error restoring cache:", error);
     return initialState;

@@ -1,14 +1,13 @@
 import type { Players, Pairs, State } from "@/types/state";
 
-// Type guards to validate the structure of the restored state
-const isPlayerValid = (entry: unknown): entry is string => {
+const isPlayer = (entry: unknown): entry is string => {
   return typeof entry === "string" && entry.length > 0;
 };
+
 const isPlayers = (players: unknown): players is Players => {
-  return (
-    Array.isArray(players) && players.every((player) => isPlayerValid(player))
-  );
+  return Array.isArray(players) && players.every((player) => isPlayer(player));
 };
+
 const isPairs = (pairs: unknown): pairs is Pairs => {
   return (
     Array.isArray(pairs) &&
@@ -16,11 +15,11 @@ const isPairs = (pairs: unknown): pairs is Pairs => {
       (pair) =>
         Array.isArray(pair) &&
         pair.length === 2 &&
-        pair.every((item) => isPlayerValid(item)),
+        pair.every((item) => isPlayer(item)),
     )
   );
 };
-export const isStateValid = (state: unknown): state is State => {
+export const isState = (state: unknown): state is State => {
   if (typeof state !== "object" || state === null) {
     return false;
   }
