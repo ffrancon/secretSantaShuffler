@@ -31,15 +31,14 @@ export const InputWithButtons = memo(
     ...rest
   }: Props) => {
     const [value, setValue] = useState(initialValue || "");
-
-    const isValid = value.trim().length > 0;
+    const isValueValid = value.trim().length > 0;
 
     const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
     };
 
     const onButtonClick = () => {
-      if (isValid) {
+      if (isValueValid) {
         propagate(value);
         if (clearAfterConfirm) {
           setValue("");
@@ -70,7 +69,7 @@ export const InputWithButtons = memo(
         />
         <Button
           onClick={onButtonClick}
-          disabled={!isValid}
+          disabled={!isValueValid}
           aria-label="Confirm"
         >
           {confirmButtonLabel}
