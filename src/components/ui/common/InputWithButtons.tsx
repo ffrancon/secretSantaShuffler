@@ -16,7 +16,6 @@ type Props = {
   confirmButtonLabel?: ReactNode;
   cancelButtonLabel?: ReactNode;
   clearAfterConfirm?: boolean;
-  autoFocus?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const InputWithButtons = memo(
@@ -27,7 +26,6 @@ export const InputWithButtons = memo(
     confirmButtonLabel = "Confirm",
     cancelButtonLabel = "Cancel",
     clearAfterConfirm = false,
-    autoFocus = false,
     ...rest
   }: Props) => {
     const [value, setValue] = useState(initialValue || "");
@@ -60,7 +58,6 @@ export const InputWithButtons = memo(
         <Input
           type="text"
           {...rest}
-          autoFocus={autoFocus}
           maxLength={64}
           value={value}
           onChange={onInputChange}
