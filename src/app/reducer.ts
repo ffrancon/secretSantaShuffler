@@ -23,7 +23,7 @@ const reducer = (state: State, action: Action) => {
               receiver === action.payload.current
                 ? action.payload.new
                 : receiver,
-            ] satisfies [string, string],
+            ] as [string, string],
         ),
       };
     case "remove_player":

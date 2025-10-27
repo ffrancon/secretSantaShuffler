@@ -20,6 +20,6 @@ export const generateRandomPairs = <T>(items: T[]): Array<[T, T]> => {
 
   return randomized.map((item, index) => {
     const next = index === end ? randomized[0] : randomized[index + 1];
-    return [item, next] satisfies [T, T];
+    return [item, next] as [T, T];
   });
 };
