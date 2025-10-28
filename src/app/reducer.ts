@@ -6,6 +6,7 @@ const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "add_player":
       return {
+        ...state,
         players: [...state.players, action.payload],
         // Reset pairs when a new player is added
         pairs: [],
@@ -25,17 +26,33 @@ const reducer = (state: State, action: Action) => {
                 : receiver,
             ] as [string, string],
         ),
+        // Update excludedPairs to reflect the edited player name
+        excludedPairs: state.excludedPairs.map(
+          ([giver, receiver]) =>
+            [
+              giver === action.payload.current ? action.payload.new : giver,
+              receiver === action.payload.current
+                ? action.payload.new
+                : receiver,
+            ] as [string, string],
+        ),
       };
     case "remove_player":
       return {
         players: state.players.filter((player) => player !== action.payload),
         // Reset pairs when a player is removed
         pairs: [],
+        // Also remove any excluded pairs involving the removed player
+        excludedPairs: state.excludedPairs.filter(
+          ([giver, receiver]) =>
+            giver !== action.payload && receiver !== action.payload,
+        ),
       };
     case "clear_players":
       return {
         players: [],
         pairs: [],
+        excludedPairs: [],
       };
     case "generate_pairs":
       return {

@@ -5,6 +5,7 @@ import { type Action } from "@/types/reducer";
 export const initialState: State = {
   players: [],
   pairs: [],
+  excludedPairs: [],
 };
 
 type SecretSantaContextType = {

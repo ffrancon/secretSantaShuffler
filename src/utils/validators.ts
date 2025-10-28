@@ -23,7 +23,7 @@ export const isState = (state: unknown): state is State => {
   if (typeof state !== "object" || state === null) {
     return false;
   }
-  const expectedKeys = ["players", "pairs"];
+  const expectedKeys = ["players", "pairs", "excludedPairs"];
   const currentKeys = Object.keys(state);
 
   // Check that only expected properties exist
@@ -36,6 +36,8 @@ export const isState = (state: unknown): state is State => {
     "players" in state &&
     isPlayers(state.players) &&
     "pairs" in state &&
-    isPairs(state.pairs)
+    isPairs(state.pairs) &&
+    "excludedPairs" in state &&
+    isPairs(state.excludedPairs)
   );
 };

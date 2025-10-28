@@ -5,4 +5,5 @@ export type Pairs = Array<[string, string]>;
 export type State = {
   players: Players;
   pairs: Pairs;
+  excludedPairs: Pairs;
 };
