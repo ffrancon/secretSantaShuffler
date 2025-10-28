@@ -30,7 +30,7 @@ export const Pairs = memo(() => {
       <ConfirmDialog
         isOpen={isOpen}
         title="Clear all pairs"
-        content="Are you sure you want to clear all pairs?"
+        description="Are you sure you want to clear all pairs?"
         confirm={clearPairs}
         close={closeDialog}
         isDestructive

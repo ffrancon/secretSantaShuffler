@@ -1,30 +1,23 @@
 import { createPortal } from "react-dom";
+import {
+  Activity,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  type ReactNode,
+} from "react";
 import { Button } from "./Button";
-import { Activity, useCallback, useEffect, useMemo, useRef } from "react";
 
 type Props = {
   isOpen: boolean;
   title: string;
-  description: string;
-  confirm: () => void;
+  children: ReactNode;
   close: () => void;
-  isDestructive?: boolean;
 };
 
-export const ConfirmDialog = ({
-  isOpen,
-  title,
-  description,
-  confirm,
-  close,
-  isDestructive = false,
-}: Props) => {
+export const Dialog = ({ isOpen, title, children, close }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
-
-  const onConfirm = useCallback(() => {
-    confirm();
-    close();
-  }, [confirm, close]);
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -77,28 +70,17 @@ export const ConfirmDialog = ({
             >
               {title}
             </h6>
-            <p
-              id="confirm-dialog-description"
-              className="text-sm text-slate-400"
-            >
-              {description}
-            </p>
+            <div>{children}</div>
           </div>
-          <div className="mt-2 flex justify-between border-t border-slate-700 p-3">
+          <div className="mt-2 flex justify-end border-t border-slate-700 p-2">
             <Button variant="secondary" onClick={close}>
-              Cancel
-            </Button>
-            <Button
-              variant={isDestructive ? "destructive" : "primary"}
-              onClick={onConfirm}
-            >
-              Confirm
+              Close
             </Button>
           </div>
         </div>
       </Activity>
     ),
-    [title, description, onConfirm, close, isOpen, isDestructive],
+    [title, children, isOpen, close],
   );
 
   const body = document.querySelector("body");

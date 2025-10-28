@@ -58,7 +58,7 @@ export const Players = memo(() => {
       <ConfirmDialog
         isOpen={isOpen}
         title="Clear all players"
-        content="Are you sure you want to remove all players? Pairs will also be cleared."
+        description="Are you sure you want to remove all players? Pairs will also be cleared."
         confirm={clearPlayers}
         close={closeDialog}
         isDestructive
