@@ -17,7 +17,7 @@ export const Pair = memo<Props>(({ pair }) => {
         <span className="font-semibold">{pair[1]}</span>
         {" a 🎁"}
       </p>
-      <CopyToClipboardButton content={toCopy} variant="secondary" />
+      <CopyToClipboardButton content={toCopy} variant="ghost" />
     </li>
   );
 });

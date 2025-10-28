@@ -1,7 +1,8 @@
 import { memo, useState } from "react";
 import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
 import { Button } from "@/components/ui/common/Button";
-import { CheckIcon, EditIcon, Trash2Icon, XIcon } from "lucide-react";
+import { CheckIcon, EllipsisVertical, XIcon } from "lucide-react";
+import { DropdownButton } from "../common/DropdownButton";
 
 type Props = {
   player: string;
@@ -24,22 +25,26 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
   };
 
   return (
-    <li className="flex items-center justify-between px-3 py-2">
+    <li className="flex items-center justify-between py-2 pr-1 pl-3">
       {mode === "view" ? (
         <div className={`flex w-full items-center justify-between`}>
           <p>{player}</p>
-          <div className="flex gap-2">
-            <Button onClick={createSetMode("edit")} aria-label="Edit player">
-              <EditIcon size={16} />
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={remove}
-              aria-label="Remove player"
-            >
-              <Trash2Icon size={16} />
-            </Button>
-          </div>
+          <DropdownButton
+            buttonProps={{
+              variant: "ghost",
+              children: <EllipsisVertical size={16} />,
+              "aria-label": "Player options",
+            }}
+          >
+            <div className="flex flex-col gap-2 rounded border border-slate-700 bg-slate-800 p-2 shadow-md transition-all duration-150">
+              <Button onClick={createSetMode("edit")} variant="ghost">
+                Edit player
+              </Button>
+              <Button variant="destructive" onClick={remove}>
+                Remove player
+              </Button>
+            </div>
+          </DropdownButton>
         </div>
       ) : (
         <InputWithButtons
