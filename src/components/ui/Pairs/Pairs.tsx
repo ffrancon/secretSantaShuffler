@@ -15,7 +15,7 @@ export const Pairs = memo(() => {
   const generatePairs = useCallback(() => {
     dispatch({
       type: "generate_pairs",
-      payload: generateRandomPairs(players),
+      payload: generateRandomPairs(players, []),
     });
   }, [dispatch, players]);
 
