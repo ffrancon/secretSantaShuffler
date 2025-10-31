@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   # TypeScript check job
-  tsc-check:
+  quality-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,10 +34,14 @@ jobs:
         run: npm ci
       - name: Run TypeScript check
         run: npx tsc --noEmit
+      - name: Run lint
+        # Always run lint even if TypeScript check fails
+        if: success() || failure()
+        run: npx eslint . --ext .ts,.tsx,.js,.jsx
 
   # Single deploy job since we're just deploying
   deploy:
-    needs: tsc-check
+    needs: quality-check
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
