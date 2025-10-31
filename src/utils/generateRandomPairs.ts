@@ -11,6 +11,7 @@ const randomizeArray = <T>(
     [result[i], result[j]] = [result[j], result[i]];
   }
 
+  // Ensure no forbidden consecutive entries
   for (const [a, b] of forbiddenConsecutiveEntries) {
     const indexA = result.indexOf(a);
     const indexB = result.indexOf(b);
@@ -40,6 +41,7 @@ export const generateRandomPairs = <T>(
   const randomized = randomizeArray(items, forbiddenConsecutiveEntries);
   const end = randomized.length - 1;
 
+  // Circular pairing
   return randomized.map((item, index) => {
     const next = index === end ? randomized[0] : randomized[index + 1];
     return [item, next] as [T, T];
