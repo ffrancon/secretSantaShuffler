@@ -28,17 +28,18 @@ export const PlayerConditionDialog = memo<Props>(
       };
     }, [excludedPairs, player]);
 
-    const addExcludedPair = (excludedPlayer: string) => {
-      if (!excludedPlayer || !excludedPair?.includes(excludedPlayer))
+    const setExcludedPair = (pickedPlayer: string) => {
+      if (pickedPlayer === null || !excludedPair?.includes(pickedPlayer)) {
         dispatch({
-          type: "add_excluded_pair",
-          payload: [player, excludedPlayer],
+          type: "set_excluded_pair",
+          payload: [player, pickedPlayer],
         });
+      }
     };
 
     const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const excludedPlayer = e.target.value;
-      addExcludedPair(excludedPlayer);
+      setExcludedPair(excludedPlayer);
     };
 
     const clearExcludedPair = () => {
@@ -52,9 +53,9 @@ export const PlayerConditionDialog = memo<Props>(
       <Dialog isOpen={isOpen} close={close} title="Set condition">
         <Fragment>
           <p className="text-sm text-slate-400">
-            Select who should not be paired with {player}
+            Select who should not be paired with {player}.
           </p>
-          <div className="mt-2 flex items-center gap-2">
+          <div className="mt-4 flex items-center gap-2">
             <Select onChange={onSelectChange} value={excludedPlayer || ""}>
               <option value="">Select a player</option>
               {players

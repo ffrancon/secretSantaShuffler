@@ -64,10 +64,22 @@ const reducer = (state: State, action: Action) => {
         ...state,
         pairs: [],
       };
-    case "add_excluded_pair":
+    case "set_excluded_pair":
       return {
         ...state,
-        excludedPairs: [...state.excludedPairs, action.payload],
+        excludedPairs:
+          // Remove any existing excluded pairs involving either player
+          state.excludedPairs
+            .filter(
+              ([giver, receiver]: [string, string]) =>
+                !(
+                  giver === action.payload[0] || receiver === action.payload[0]
+                ) &&
+                !(
+                  giver === action.payload[1] || receiver === action.payload[1]
+                ),
+            )
+            .concat([action.payload]),
       };
     case "remove_excluded_pair":
       return action.payload === null

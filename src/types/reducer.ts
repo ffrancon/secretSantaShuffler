@@ -31,8 +31,8 @@ export type ClearPairsAction = {
   type: "clear_pairs";
 };
 
-export type AddExcludedPair = {
-  type: "add_excluded_pair";
+export type SetExcludedPair = {
+  type: "set_excluded_pair";
   payload: [string, string];
 };
 
@@ -48,5 +48,5 @@ export type Action =
   | ClearPlayersAction
   | GeneratePairsAction
   | ClearPairsAction
-  | AddExcludedPair
+  | SetExcludedPair
   | RemoveExcludedPair;
