@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run TypeScript check
-        run: npx tsc --noEmit
+        run: npx tsc --noEmit --project tsconfig.app.json
       - name: Run lint
         # Always run lint even if TypeScript check fails
         if: success() || failure()
