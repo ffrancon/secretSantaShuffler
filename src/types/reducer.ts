@@ -31,10 +31,22 @@ export type ClearPairsAction = {
   type: "clear_pairs";
 };
 
+export type AddExcludedPair = {
+  type: "add_excluded_pair";
+  payload: [string, string];
+};
+
+export type RemoveExcludedPair = {
+  type: "remove_excluded_pair";
+  payload: [string, string] | null;
+};
+
 export type Action =
   | AddPlayerAction
   | EditPlayerAction
   | RemovePlayerAction
   | ClearPlayersAction
   | GeneratePairsAction
-  | ClearPairsAction;
+  | ClearPairsAction
+  | AddExcludedPair
+  | RemoveExcludedPair;

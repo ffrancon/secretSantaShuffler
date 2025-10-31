@@ -64,6 +64,24 @@ const reducer = (state: State, action: Action) => {
         ...state,
         pairs: [],
       };
+    case "add_excluded_pair":
+      return {
+        ...state,
+        excludedPairs: [...state.excludedPairs, action.payload],
+      };
+    case "remove_excluded_pair":
+      return action.payload === null
+        ? state
+        : {
+            ...state,
+            excludedPairs: state.excludedPairs.filter(
+              ([giver, receiver]: [string, string]) =>
+                !(
+                  giver === action.payload?.[0] &&
+                  receiver === action.payload?.[1]
+                ),
+            ),
+          };
     default:
       return state;
   }

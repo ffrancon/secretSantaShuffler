@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/common/Button";
 import { CheckIcon, EllipsisVertical, XIcon } from "lucide-react";
 import { DropdownButton } from "../common/DropdownButton";
 import { useDialogState } from "@/components/hooks/useDialogState";
-import { Dialog } from "../common/Dialog";
+import { PlayerConditionDialog } from "./PlayerCondition";
 
 type Props = {
   player: string;
@@ -30,11 +30,11 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
 
   return (
     <Fragment>
-      <Dialog isOpen={isOpen} close={closeDialog} title="Set condition">
-        <p className="text-sm text-slate-400">
-          Select who should not be paired with {player}
-        </p>
-      </Dialog>
+      <PlayerConditionDialog
+        player={player}
+        isOpen={isOpen}
+        close={closeDialog}
+      />
       <li className="flex items-center justify-between py-2 pr-1 pl-3">
         {mode === "view" ? (
           <div className={`flex w-full items-center justify-between`}>
@@ -45,6 +45,7 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
                 children: <EllipsisVertical size={16} />,
                 "aria-label": "Player options",
               }}
+              aria-haspopup="menu"
             >
               <div className="flex flex-col gap-2 rounded border border-slate-700 bg-slate-800 p-2 shadow-md transition-all duration-150">
                 <Button

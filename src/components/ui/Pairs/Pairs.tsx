@@ -8,16 +8,16 @@ import { useDialogState } from "@/components/hooks/useDialogState";
 
 export const Pairs = memo(() => {
   const {
-    state: { players, pairs },
+    state: { players, pairs, excludedPairs },
     dispatch,
   } = useSecretSantaCtx();
 
   const generatePairs = useCallback(() => {
     dispatch({
       type: "generate_pairs",
-      payload: generateRandomPairs(players, []),
+      payload: generateRandomPairs(players, excludedPairs),
     });
-  }, [dispatch, players]);
+  }, [dispatch, players, excludedPairs]);
 
   const clearPairs = useCallback(() => {
     dispatch({ type: "clear_pairs" });

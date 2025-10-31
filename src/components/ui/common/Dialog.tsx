@@ -74,7 +74,7 @@ export const Dialog = ({ isOpen, title, children, close }: Props) => {
           </div>
           <div className="mt-2 flex justify-end border-t border-slate-700 p-2">
             <Button variant="secondary" onClick={close}>
-              Close
+              Done
             </Button>
           </div>
         </div>
