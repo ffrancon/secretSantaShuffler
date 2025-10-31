@@ -5,6 +5,7 @@ import { CheckIcon, EllipsisVertical, XIcon } from "lucide-react";
 import { DropdownButton } from "../common/DropdownButton";
 import { useDialogState } from "@/components/hooks/useDialogState";
 import { PlayerConditionDialog } from "./PlayerCondition";
+import { useSecretSantaCtx } from "@/app/context";
 
 type Props = {
   player: string;
@@ -13,6 +14,9 @@ type Props = {
 };
 
 export const Player = memo<Props>(({ player, remove, edit }) => {
+  const {
+    state: { players },
+  } = useSecretSantaCtx();
   const [mode, setMode] = useState<"view" | "edit">("view");
 
   const createSetMode = (mode: "view" | "edit") => () => {
@@ -55,13 +59,15 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
                 >
                   Edit player
                 </Button>
-                <Button
-                  onClick={openDialog}
-                  variant="ghost"
-                  className="pl-1 text-left"
-                >
-                  Set condition
-                </Button>
+                {players.length > 2 && (
+                  <Button
+                    onClick={openDialog}
+                    variant="ghost"
+                    className="pl-1 text-left"
+                  >
+                    Set condition
+                  </Button>
+                )}
                 <Button variant="destructive" onClick={remove}>
                   Remove player
                 </Button>
