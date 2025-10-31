@@ -72,12 +72,8 @@ const reducer = (state: State, action: Action) => {
           state.excludedPairs
             .filter(
               ([giver, receiver]: [string, string]) =>
-                !(
-                  giver === action.payload[0] || receiver === action.payload[0]
-                ) &&
-                !(
-                  giver === action.payload[1] || receiver === action.payload[1]
-                ),
+                !action.payload.includes(giver) &&
+                !action.payload.includes(receiver),
             )
             .concat([action.payload]),
       };
