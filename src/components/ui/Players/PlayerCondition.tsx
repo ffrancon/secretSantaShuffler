@@ -2,6 +2,7 @@ import { useSecretSantaCtx } from "@/app/context";
 import { Fragment, memo, useMemo } from "react";
 import { Dialog } from "../common/Dialog";
 import { Button } from "../common/Button";
+import { Select } from "../common/Select";
 
 type Props = {
   player: string;
@@ -28,7 +29,7 @@ export const PlayerConditionDialog = memo<Props>(
     }, [excludedPairs, player]);
 
     const addExcludedPair = (excludedPlayer: string) => {
-      if (excludedPlayer && excludedPair?.includes(excludedPlayer))
+      if (!excludedPlayer || !excludedPair?.includes(excludedPlayer))
         dispatch({
           type: "add_excluded_pair",
           payload: [player, excludedPlayer],
@@ -53,24 +54,25 @@ export const PlayerConditionDialog = memo<Props>(
           <p className="text-sm text-slate-400">
             Select who should not be paired with {player}
           </p>
-          <select onChange={onSelectChange} value={excludedPlayer || ""}>
-            <option value="">-- Select a player --</option>
-            {players
-              .filter((p) => p !== player)
-              .map((p) => (
-                <option key={p} value={p}>
-                  {p}
-                </option>
-              ))}
-          </select>
-          <Button
-            variant="destructive"
-            className="mt-4"
-            onClick={clearExcludedPair}
-            disabled={!excludedPair}
-          >
-            Clear condition
-          </Button>
+          <div className="mt-2 flex items-center gap-2">
+            <Select onChange={onSelectChange} value={excludedPlayer || ""}>
+              <option value="">Select a player</option>
+              {players
+                .filter((p) => p !== player)
+                .map((p) => (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                ))}
+            </Select>
+            <Button
+              variant="destructive"
+              onClick={clearExcludedPair}
+              disabled={!excludedPair}
+            >
+              Clear condition
+            </Button>
+          </div>
         </Fragment>
       </Dialog>
     );
