@@ -1,4 +1,4 @@
-import type { Pairs } from "./state";
+import  { type Pairs } from "./state";
 
 export type AddPlayerAction = {
   type: "add_player";

@@ -1,4 +1,4 @@
-import type { Players, Pairs, State } from "@/types/state";
+import  { type Players, type Pairs, type State } from "@/types/state";
 
 const isPlayer = (entry: unknown): entry is string => {
   return typeof entry === "string" && entry.length > 0;

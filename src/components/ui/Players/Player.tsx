@@ -1,11 +1,14 @@
-import { Fragment, memo, useState } from "react";
-import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
-import { Button } from "@/components/ui/common/Button";
 import { CheckIcon, EllipsisVertical, XIcon } from "lucide-react";
-import { DropdownButton } from "../common/DropdownButton";
-import { useDialogState } from "@/components/hooks/useDialogState";
-import { PlayerConditionDialog } from "./PlayerCondition";
+import { Fragment, memo, useState } from "react";
+
 import { useSecretSantaCtx } from "@/app/context";
+import { useDialogState } from "@/components/hooks/useDialogState";
+import { Button } from "@/components/ui/common/Button";
+import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
+
+import { DropdownButton } from "../common/DropdownButton";
+
+import { PlayerConditionDialog } from "./PlayerCondition";
 
 type Props = {
   player: string;
@@ -83,7 +86,6 @@ export const Player = memo<Props>(({ player, remove, edit }) => {
             confirmButtonAriaLabel="Confirm edit"
             cancelButtonLabel={<XIcon size={16} />}
             cancelButtonAriaLabel="Cancel edit"
-            autoFocus
             aria-label="Edit player input"
           />
         )}

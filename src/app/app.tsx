@@ -1,7 +1,8 @@
-import { Provider } from "./provider";
 import { Header } from "@/components/ui/Header/Header";
 import { Pairs } from "@/components/ui/Pairs/Pairs";
 import { Players } from "@/components/ui/Players/Players";
+
+import { Provider } from "./provider";
 
 export const App = () => {
   return (

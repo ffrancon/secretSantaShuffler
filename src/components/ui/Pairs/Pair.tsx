@@ -1,5 +1,7 @@
-import { formatPairToReadableString } from "@/utils/formatPairsToReadableString";
 import { memo, useMemo } from "react";
+
+import { formatPairToReadableString } from "@/utils/formatPairsToReadableString";
+
 import { CopyToClipboardButton } from "../common/CopyToClipboardButton";
 
 type Props = {

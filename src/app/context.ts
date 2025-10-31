@@ -1,6 +1,7 @@
 import { type ActionDispatch, createContext, useContext } from "react";
-import { type State } from "@/types/state";
+
 import { type Action } from "@/types/reducer";
+import { type State } from "@/types/state";
 
 export const initialState: State = {
   players: [],

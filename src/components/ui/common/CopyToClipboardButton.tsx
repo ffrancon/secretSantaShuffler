@@ -1,6 +1,7 @@
-import { useCallback, useState } from "react";
-import { Button, type ButtonProps } from "./Button";
 import { CopyIcon } from "lucide-react";
+import { useCallback, useState } from "react";
+
+import { Button, type ButtonProps } from "./Button";
 
 type Props = {
   content: string;

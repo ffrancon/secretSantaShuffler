@@ -1,6 +1,7 @@
-import { createPortal } from "react-dom";
-import { Button } from "./Button";
 import { Activity, useCallback, useEffect, useMemo, useRef } from "react";
+import { createPortal } from "react-dom";
+
+import { Button } from "./Button";
 
 type Props = {
   isOpen: boolean;

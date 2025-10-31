@@ -1,7 +1,9 @@
+import { Fragment, memo, useMemo, type ChangeEvent } from "react";
+
 import { useSecretSantaCtx } from "@/app/context";
-import { Fragment, memo, useMemo } from "react";
-import { Dialog } from "../common/Dialog";
+
 import { Button } from "../common/Button";
+import { Dialog } from "../common/Dialog";
 import { Select } from "../common/Select";
 
 type Props = {
@@ -37,7 +39,7 @@ export const PlayerConditionDialog = memo<Props>(
       }
     };
 
-    const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
       const excludedPlayer = e.target.value;
       setExcludedPair(excludedPlayer);
     };

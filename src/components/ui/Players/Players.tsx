@@ -1,10 +1,14 @@
 import { Fragment, memo, useCallback } from "react";
+
 import { useSecretSantaCtx } from "@/app/context";
-import { Player } from "./Player";
+import { useDialogState } from "@/components/hooks/useDialogState";
 import { InputWithButtons } from "@/components/ui/common/InputWithButtons";
+
 import { Button } from "../common/Button";
 import { ConfirmDialog } from "../common/ConfirmDialog";
-import { useDialogState } from "@/components/hooks/useDialogState";
+
+import { Player } from "./Player";
+
 
 export const Players = memo(() => {
   const {

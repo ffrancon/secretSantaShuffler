@@ -1,10 +1,13 @@
-import { useSecretSantaCtx } from "@/app/context";
-import { generateRandomPairs } from "@/utils/generateRandomPairs";
 import { Fragment, memo, useCallback } from "react";
-import { Pair } from "./Pair";
-import { Button } from "@/components/ui/common/Button";
-import { ConfirmDialog } from "../common/ConfirmDialog";
+
+import { useSecretSantaCtx } from "@/app/context";
 import { useDialogState } from "@/components/hooks/useDialogState";
+import { Button } from "@/components/ui/common/Button";
+import { generateRandomPairs } from "@/utils/generateRandomPairs";
+
+import { ConfirmDialog } from "../common/ConfirmDialog";
+
+import { Pair } from "./Pair";
 
 export const Pairs = memo(() => {
   const {

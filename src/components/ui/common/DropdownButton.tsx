@@ -10,12 +10,12 @@ import {
   useInteractions,
   FloatingFocusManager,
 } from "@floating-ui/react";
-import type React from "react";
+import { Activity, Fragment, useState, type ReactNode } from "react";
+
 import { Button, type ButtonProps } from "./Button";
-import { Activity, Fragment, useState } from "react";
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   buttonProps?: ButtonProps;
 };
 
