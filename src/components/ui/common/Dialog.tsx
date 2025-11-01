@@ -84,9 +84,5 @@ export const Dialog = ({ isOpen, title, children, close }: Props) => {
     [title, children, isOpen, close],
   );
 
-  const body = document.querySelector("body");
-
-  if (!(body instanceof HTMLElement)) return null;
-
-  return createPortal(dialog, body);
+  return createPortal(dialog, document.body);
 };

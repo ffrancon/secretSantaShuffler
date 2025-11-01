@@ -102,9 +102,5 @@ export const ConfirmDialog = ({
     [title, description, onConfirm, close, isOpen, isDestructive],
   );
 
-  const body = document.querySelector("body");
-
-  if (!(body instanceof HTMLElement)) return null;
-
-  return createPortal(dialog, body);
+  return createPortal(dialog, document.body);
 };
