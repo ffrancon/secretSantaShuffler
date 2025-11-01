@@ -9,7 +9,6 @@ import { ConfirmDialog } from "../common/ConfirmDialog";
 
 import { Player } from "./Player";
 
-
 export const Players = memo(() => {
   const {
     state: { players, pairs },

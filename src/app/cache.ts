@@ -1,7 +1,6 @@
 import { initialState } from "@/app/context";
-import  { type State } from "@/types/state";
+import { type State } from "@/types/state";
 import { isState } from "@/utils/validators";
-
 
 const CACHE_KEY = "secretSantaShufflerCache";
 
