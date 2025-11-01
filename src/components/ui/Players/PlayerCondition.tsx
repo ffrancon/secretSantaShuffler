@@ -55,7 +55,10 @@ export const PlayerConditionDialog = memo<Props>(
       <Dialog isOpen={isOpen} close={close} title="Set condition">
         <Fragment>
           <p className="text-sm text-slate-400">
-            Select who should not be paired with {player}.
+            Select who should not be paired with {player}.<br />
+            <span className="text-xs italic">
+              Only one player can be excluded from being paired with {player}.
+            </span>
           </p>
           <div className="mt-4 flex items-center gap-2">
             <Select onChange={onSelectChange} value={excludedPlayer || ""}>
