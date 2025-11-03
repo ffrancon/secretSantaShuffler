@@ -57,6 +57,10 @@ Secret Santa Shuffler is a simple web application for organising Secret Santa gi
 
 ## Getting Started
 
+### Direct access
+
+[https://ffrancon.github.io/secretSantaShuffler](https://ffrancon.github.io/secretSantaShuffler)
+
 ### Prerequisites
 
 - Node.js (version 18 or higher recommended)
